@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>为了不应忘却的故事</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background-color: navajowhite;
+            background-position: center; /* 将图片置于中心 */
+            background-repeat: no-repeat; /* 不重复图片 */
+            background-size: 100% auto; /* 设置背景图片宽度为100% */
+            position: relative; /* 为 body 设置相对定位 */
+            background-image: url('image/past.png'); /* 设置背景图片 */
+            /*animation: fadeIn 7s ease-in-out; !* 应用背景图片淡入动画 *!*/
+            overflow-y: scroll; /* 添加垂直滚动条 */
+        }
+        .content {
+            position: absolute;
+            top: 128px; /* 距离顶部40px */
+            right: 230px; /* 距离右边40px */
+            color: #17171c; /* 文字颜色 */
+            z-index: 100;
+            width: 60%; /* 确保内容宽度为80% */
+            max-height: 71vh; /* 设置最大高度为视口高度 */
+            overflow-y: scroll; /* 如果内容超出最大高度，则显示滚动条 */
+            padding: 20px; /* 添加内边距 */
+            box-sizing: border-box; /* 边框和内边距包含在宽度内 */
+            font-weight: bold; /* 字体加粗 */
+        }
+        .title {
+            position: absolute;
+            top: 20px; /* 距离顶部20px */
+            right: 1150px; /* 距离右边200px */
+            box-sizing: border-box; /* 边框和内边距包含在宽度内 */
+            color: black; /* 文字颜色 */
+            z-index: 100;
+        }
+        .content2 {
+            position: absolute;
+            bottom: 30px; /* 距离底部30px */
+            right: 30px; /* 距离右边30px */
+            font-size: 18px; /* 设置文字大小 */
+            z-index: 100;
+            text-align: right; /* 右对齐文字 */
+            animation: fadeInText 5s ease-in-out; /* 应用文字淡入动画 */
+        }
+        h1 {
+            color: black; /* 文字颜色设置为黑色 */
+            text-shadow: 2px 2px 4px #aaa; /* 添加文字阴影以提高可读性 */
+        }
+        img {
+            width: 50%; /* 图片宽度为50% */
+            height: auto; /* 图片高度自动调整 */
+            margin-bottom: 20px; /* 图片下方添加间距 */
+        }
+        .text-block {
+            opacity: 0; /* 初始透明度为0 */
+            animation: fadeInText 5s ease-in-out forwards; /* 应用文字淡入动画 */
+        }
+        span {
+            opacity: 0; /* 初始透明度为0 */
+            display: inline-block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes fadeInText {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes fadein-outText {
+            0%, 100% { opacity: 0; } /* 开始和结束时透明度为0 */
+            20%, 80% { opacity: 1; } /* 中间部分透明度为1 */
+        }
+        .clock {
+            position: absolute;
+            top: 20px; /* 距离顶部20px */
+            right: 20px; /* 距离右边20px */
+            font-size: 26px; /* 设置文字大小为24px */
+            color: black; /* 文字颜色 */
+            z-index: 100;
+            text-align: right; /* 右对齐文字 */
+            padding: 10px; /* 添加内边距 */
+            background-color: rgba(255, 255, 255, 0.8); /* 半透明背景 */
+            border-radius: 5px; /* 圆角边框 */
+        }
+        /* 定义灰尘下落的动画 */
+        @keyframes dustFall {
+            0% {
+                transform: translateY(-5px);
+                opacity: 0;
+            }
+            50% {
+                opacity: 0.5;
+            }
+            100% {
+                transform: translateY(105vh);
+                opacity: 0;
+            }
+        }
+
+        /* 添加到body的伪元素::after中 */
+        body::after {
+            content: '';
+            position: fixed;
+            top: -1000px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: transparent;
+            z-index: 10000; /* 确保在内容之下 */
+            pointer-events: none; /* 防止伪元素影响页面交互 */
+            background-image:
+                    radial-gradient(circle, rgba(0, 0, 0, 0.2) 2px, transparent 2px),
+                    radial-gradient(circle, rgba(0, 0, 0, 0.2) 2px, transparent 2px),
+                    radial-gradient(circle, rgba(0, 0, 0, 0.2) 2px, transparent 2px),
+                    radial-gradient(circle, rgba(0, 0, 0, 0.2) 2px, transparent 2px);
+            background-size: 100px 100px;
+            background-position: 0 0, 50px 50px, 100px 100px, 150px 150px;
+            animation: dustFall 8s linear infinite;
+        }
+        a {
+            color: #17171c; /* 链接颜色 */
+            text-decoration: none; /* 去除下划线 */
+            position: relative; /* 为绝对定位做准备 */
+            transition: color 0.3s ease, box-shadow 0.3s ease; /* 平滑过渡颜色和阴影 */
+        }
+
+        /* 链接悬停时的阴影效果 */
+        a:hover {
+            color: #3c4add; /* 悬停时的颜色更深 */
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3); /* 添加阴影 */
+            transition: box-shadow 0.3s ease; /* 平滑过渡阴影 */
+        }
+
+        #music-toggle {
+            position: absolute;
+            top: 72px; /* 距离顶部60px */
+            right: 22px; /* 距离右边20px */
+            padding: 10px 20px; /* 按钮的内边距 */
+            font-size: 10px; /* 按钮的字体大小 */
+            cursor: pointer; /* 鼠标悬停时显示指针 */
+        }
+        /* 为链接添加动态阴影效果 */
+        a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+            height: 1px; /* 阴影的高度 */
+            background: rgba(0, 0, 0, 0.3); /* 阴影的颜色 */
+            opacity: 0; /* 初始透明度为0 */
+            transition: opacity 0.3s ease; /* 平滑过渡透明度 */
+        }
+
+        /* 链接悬停时显示阴影 */
+        a:hover::after {
+            opacity: 1; /* 悬停时透明度为1 */
+        }
+    </style>
+</head>
+<body>
+<div class="title">
+    <h1>一点旧事</h1>
+</div>
+<div class="content">
+    <div class="text-block">
+        <s>啊，好怀念以前吃过的好吃的。。。。。。</s>
+        <br>
+        <img src="/image/past/Weixin%20Image_20241110125910.jpg" alt="图片1">
+        <img src="/image/past/Weixin%20Image_202411101259101.jpg" alt="图片1">
+        <img src="/image/past/Weixin%20Image_202411101259102.jpg" alt="图片1">
+        <p><span>左边</span><span>是</span><span>酒</span><span>酿</span><span>，</span><span>右</span><span>边</span><span>是</span><span>猪</span><span>头</span><span>肉</span><span>，</span><span>快</span><span>哉</span><span>快</span><span>哉</span></p>
+        <br>
+        <p><span>总</span><span>之</span><span>，</span><span>如</span><span>果</span><span>有</span><span>人</span><span>问</span><span>我</span><span>在</span><span>我</span><span>度</span><span>过</span><span>的</span><span>18</span><span>年</span><span>中</span><span>有</span><span>什</span><span>么</span><span>值</span><span>得</span><span>时</span><span>常</span><span>回</span><span>味</span><span>，</span><span>我</span><span>想</span><span>那</span><span>一</span><span>定</span><span>是</span><span>那</span><span>些</span><span>好</span><span>吃</span><span>的</span></p>
+        <br>
+        <p><span>不</span><span>过</span><span>光</span><span>回</span><span>想</span><span>却</span><span>吃</span><span>不</span><span>到</span><span>口</span><span>，</span><span>实</span><span>在</span><span>令</span><span>人</span><span>又</span><span>馋</span><span>又</span><span>饿</span><span>，</span><span>所</span><span>以</span><span>还</span><span>是</span><span>回</span><span>想</span><span>一</span><span>些</span><span>其</span><span>他</span><span>的</span><span>东</span><span>西</span><span>吧</span></p>
+        <br>
+        <img src="/image/past/Weixin%20Image_20241110125909.jpg" alt="图片1">
+        <p><span>我</span><span>是</span><span>天</span><span>津</span><span>人</span><span>，</span><span>家</span><span>在</span><span>天</span><span>津</span><span>大</span><span>学</span><span>附</span><span>近</span><span>，</span><span>小</span><span>时</span><span>候</span><span>经</span><span>常</span><span>去</span><span>里</span><span>面</span><span>玩</span><span>，</span><span>虽</span><span>然</span><span>不</span><span>曾</span><span>在</span><span>里</span><span>面</span><span>学</span><span>习</span><span>，</span><span>但</span><span>我</span><span>想</span><span>，</span><span>天</span><span>津</span><span>大</span><span>学</span><span>算</span><span>得</span><span>上</span><span>是</span><span>我</span><span>启</span><span>蒙</span><span>的</span><span>母</span><span>校</span></p>
+        <br>
+        <p><span>天</span><span>津</span><span>大</span><span>学</span><span>的</span><span>食</span><span>堂</span><span>也</span><span>不</span><span>错</span><span>哦</span><span>，</span><span>里</span><span>面</span><span>有</span><span>很</span><span>香</span><span>很</span><span>便</span><span>宜</span><span>的</span><span>麻</span><span>油</span><span>拌</span><span>面</span><span>，</span><span>很</span><span>香</span><span>很</span><span>浓</span><span>郁</span><span>的</span><span>鸭</span><span>血</span><span>粉</span><span>丝</span><span>汤</span><span>，</span><span>可</span><span>惜</span><span>好</span><span>久</span><span>没</span><span>有</span><span>喝</span><span>到</span><span>了</span></p>
+        <br>
+        <p><span>若</span><span>是</span><span>你</span><span>有</span><span>一</span><span>天</span><span>来</span><span>天</span><span>津</span><span>旅</span><span>游</span><span>，</span><span>我</span><span>可</span><span>以</span><span>给</span><span>你</span><span>一</span><span>些</span><span>建</span><span>议</span><span>，</span><span>比</span><span>如</span><span>哪</span><span>家</span><span>包</span><span>子</span><span>好</span><span>吃</span><span>（</span><span>只</span><span>要</span><span>不</span><span>是</span><span>狗</span><span>不</span><span>理</span><span>都</span><span>挺</span><span>好</span><span>吃</span><span>）</span><span>，</span><span>哪</span><span>家</span><span>煎</span><span>饼</span><span>果</span><span>子</span><span>面</span><span>细</span><span>或</span><span>是</span><span>一</span><span>些</span><span>名</span><span>气</span><span>不</span><span>大</span><span>但</span><span>味</span><span>道</span><span>极</span><span>好</span><span>的</span><span>回</span><span>民</span><span>菜</span><span>馆</span></p>
+        <br>
+        <p><span>可</span><span>恶</span><span>！</span><span>！</span><span>！</span><span>我</span><span>好</span><span>想</span><span>再</span><span>吃</span><span>一</span><span>顿</span><span>啊</span><span>，</span><span>华</span><span>科</span><span>要</span><span>是</span><span>多</span><span>放</span><span>几</span><span>天</span><span>假</span><span>就</span><span>好</span><span>了</span></p>
+        <br>
+        <p><span>说</span><span>回</span><span>到</span><span>母</span><span>校</span><span>的</span><span>事</span></p>
+        <br>
+        <img src="/image/past/ac6eddc451da81cb593dc79c5a66d01608243183.webp" alt="图片1">
+        <p><span>母</span><span>亲</span><span>是</span><span>南</span><span>开</span><span>中</span><span>学</span><span>的</span><span>一</span><span>名</span><span>教</span><span>师</span><span>，</span><span>所</span><span>以</span><span>我</span><span>在</span><span>很</span><span>小</span><span>很</span><span>小</span><span>，</span><span>小</span><span>到</span><span>不</span><span>记</span><span>得</span><span>的</span><span>时</span><span>候</span><span>就</span><span>进</span><span>入</span><span>这</span><span>所</span><span>学</span><span>校</span><span>了</span><span>（</span><span>那</span><span>时</span><span>候</span><span>食</span><span>堂</span><span>还</span><span>有</span><span>很</span><span>大</span><span>的</span><span>烧</span><span>饼</span><span>鸡</span><span>排</span><span>呢</span><span>）</span></p>
+        <br>
+        <p><span>后</span><span>来</span><span>也</span><span>有</span><span>幸</span><span>在</span><span>这</span><span>所</span><span>学</span><span>校</span><span>里</span><span>面</span><span>读</span><span>了</span><span>初</span><span>高</span><span>中</span><span>六</span><span>年</span><span>，</span><span>可</span><span>以</span><span>说</span><span>和</span><span>这</span><span>所</span><span>学</span><span>校</span><span>的</span><span>情</span><span>感</span><span>很</span><span>深</span><span>厚</span><span>了</span><span>，</span><span>所</span><span>以</span><span>在</span><span>这</span><span>里</span><span>安</span><span>利</span><span>一</span><span>下</span><span>我</span><span>们</span><span>学</span><span>校</span><span>吧</span></p>
+        <br>
+        <img src="/image/past/Weixin%20Image_202411101259112.jpg" alt="图片1">
+        <p><span>校</span><span>庆</span><span>日</span><span>的</span><span>小</span><span>龙</span><span>虾</span></p>
+        <img src="/image/past/Weixin%20Image_20241110173507.jpg" alt="图片1">
+        <p><span>校</span><span>园</span><span>一</span><span>景</span></p>
+        <img src="/image/past/OIP-C.jpg" alt="图片1">
+        <p><span>最</span><span>老</span><span>的</span><span>楼</span></p>
+        <p><span>今</span><span>年</span><span>（</span><span>2024</span><span>）</span><span>正</span><span>好</span><span>是</span><span>南</span><span>开</span><span>中</span><span>学</span><span>120</span><span>周</span><span>年</span><span>校</span><span>庆</span><span>，</span><span>可</span><span>惜</span><span>我</span><span>正</span><span>好</span><span>没</span><span>赶</span><span>上</span><span>，</span><span>听</span><span>说</span><span>食</span><span>堂</span><span>做</span><span>了</span><span>好</span><span>些</span><span>平</span><span>时</span><span>吃</span><span>不</span><span>到</span><span>的</span><span>好</span><span>东</span><span>西</span><span>，</span><span>可</span><span>惜</span><span>可</span><span>惜</span></p>
+        <p><span>最</span><span>后</span><span>贴</span><span>上</span><span>我</span><span>和</span><span>我</span><span>哥</span><span>哥</span><span>的</span><span>可</span><span>爱</span><span>照</span><span>片</span><span>，</span><span>提</span><span>醒</span><span>自</span><span>己</span><span>要</span><span>保</span><span>持</span><span>童</span><span>真</span></p>
+        <img src="/image/past/Weixin%20Image_20241110125911.jpg" alt="图片1">
+
+    </div>
+
+</div>
+<div id="clock" class="clock"></div>
+<div class="content2">
+    <a href="dangxiaqingkuang.html">>>> 现在？</a>
+    <br>
+    <a href="weilanzhanwang.html">>>> 未来？</a>
+    <br>
+    <a href="chongdianzhan.html">>>> 累了？</a>
+    <br>
+</div>
+<button id="music-toggle">播放/暂停音乐</button>
+<audio autoplay loop>
+    <source src="music/1.mp3" type="audio/mpeg">
+</audio>
+<script>
+    var audio = document.querySelector('audio');
+    var toggle = document.getElementById('music-toggle');
+    toggle.addEventListener('click', function() {
+        if (audio.paused) {
+            audio.play();
+            toggle.textContent = '暂停音乐';
+        } else {
+            audio.pause();
+            toggle.textContent = '播放音乐';
+        }
+    });
+</script>
+<script>
+    const letters = document.querySelectorAll('.text-block span');
+    let letterIndex = 0;
+    function typeLetter() {
+        if (letterIndex < letters.length) {
+            letters[letterIndex].style.opacity = 1;
+            letterIndex++;
+            setTimeout(typeLetter, 60); // 200毫秒显示一个字符
+        }
+    }
+
+    typeLetter();
+    function updateClock() {
+        var now = new Date(); // 获取当前时间
+        var hours = now.getHours();
+        var minutes = now.getMinutes();
+        var seconds = now.getSeconds();
+
+        // 如果小于10，前面加0
+        minutes = minutes < 10 ? '0' + minutes : minutes;
+        seconds = seconds < 10 ? '0' + seconds : seconds;
+
+        var timeString = hours + ':' + minutes + ':' + seconds;
+        document.getElementById('clock').textContent = timeString;
+
+        setTimeout(updateClock, 1000); // 每秒更新一次
+    }
+
+    updateClock(); // 初始化时钟
+</script>
+
+</body>
+</html>

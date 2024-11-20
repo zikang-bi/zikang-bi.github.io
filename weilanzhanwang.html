@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>向着每一个崭新的明天</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background-color: navajowhite;
+            background-position: center; /* 将图片置于中心 */
+            background-repeat: no-repeat; /* 不重复图片 */
+            background-size: 100% auto; /* 设置背景图片宽度为100% */
+            position: relative; /* 为 body 设置相对定位 */
+            background-image: url('image/future.png'); /* 设置背景图片 */
+            /*animation: fadeIn 7s ease-in-out; !* 应用背景图片淡入动画 *!*/
+            overflow-y: scroll; /* 添加垂直滚动条 */
+        }
+        .content {
+            position: absolute;
+            top: 128px; /* 距离顶部40px */
+            right: 230px; /* 距离右边40px */
+            color: #17171c; /* 文字颜色 */
+            z-index: 100;
+            width: 60%; /* 确保内容宽度为80% */
+            max-height: 71vh; /* 设置最大高度为视口高度 */
+            overflow-y: scroll; /* 如果内容超出最大高度，则显示滚动条 */
+            padding: 20px; /* 添加内边距 */
+            box-sizing: border-box; /* 边框和内边距包含在宽度内 */
+            font-weight: bold; /* 字体加粗 */
+        }
+        .title {
+            position: absolute;
+            top: 20px; /* 距离顶部20px */
+            right: 1150px; /* 距离右边200px */
+            box-sizing: border-box; /* 边框和内边距包含在宽度内 */
+            color: black; /* 文字颜色 */
+            z-index: 100;
+        }
+        .content2 {
+            position: absolute;
+            bottom: 30px; /* 距离底部30px */
+            right: 30px; /* 距离右边30px */
+            font-size: 18px; /* 设置文字大小 */
+            z-index: 100;
+            text-align: right; /* 右对齐文字 */
+            animation: fadeInText 5s ease-in-out; /* 应用文字淡入动画 */
+        }
+        h1 {
+            color: black; /* 文字颜色设置为黑色 */
+            text-shadow: 2px 2px 4px #aaa; /* 添加文字阴影以提高可读性 */
+        }
+        img {
+            width: 80%; /* 图片宽度为50% */
+            height: auto; /* 图片高度自动调整 */
+            margin-bottom: 20px; /* 图片下方添加间距 */
+        }
+        .text-block {
+            opacity: 0; /* 初始透明度为0 */
+            animation: fadeInText 5s ease-in-out forwards; /* 应用文字淡入动画 */
+        }
+        span {
+            opacity: 0; /* 初始透明度为0 */
+            display: inline-block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes fadeInText {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes fadein-outText {
+            0%, 100% { opacity: 0; } /* 开始和结束时透明度为0 */
+            20%, 80% { opacity: 1; } /* 中间部分透明度为1 */
+        }
+        .clock {
+            position: absolute;
+            top: 20px; /* 距离顶部20px */
+            right: 20px; /* 距离右边20px */
+            font-size: 26px; /* 设置文字大小为24px */
+            color: black; /* 文字颜色 */
+            z-index: 100;
+            text-align: right; /* 右对齐文字 */
+            padding: 10px; /* 添加内边距 */
+            background-color: rgba(255, 255, 255, 0.8); /* 半透明背景 */
+            border-radius: 5px; /* 圆角边框 */
+        }
+        /* 定义灰尘下落的动画 */
+        @keyframes dustFall {
+            0% {
+                transform: translateY(-5px);
+                opacity: 0;
+            }
+            50% {
+                opacity: 0.5;
+            }
+            100% {
+                transform: translateY(105vh);
+                opacity: 0;
+            }
+        }
+
+        /* 添加到body的伪元素::after中 */
+        body::after {
+            content: '';
+            position: fixed;
+            top: -1000px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: transparent;
+            z-index: 10000; /* 确保在内容之下 */
+            pointer-events: none; /* 防止伪元素影响页面交互 */
+            background-image:
+                    radial-gradient(circle, rgba(0, 0, 0, 0.2) 2px, transparent 2px),
+                    radial-gradient(circle, rgba(0, 0, 0, 0.2) 2px, transparent 2px),
+                    radial-gradient(circle, rgba(0, 0, 0, 0.2) 2px, transparent 2px),
+                    radial-gradient(circle, rgba(0, 0, 0, 0.2) 2px, transparent 2px);
+            background-size: 100px 100px;
+            background-position: 0 0, 50px 50px, 100px 100px, 150px 150px;
+            animation: dustFall 8s linear infinite;
+        }
+        a {
+            color: #17171c; /* 链接颜色 */
+            text-decoration: none; /* 去除下划线 */
+            position: relative; /* 为绝对定位做准备 */
+            transition: color 0.3s ease, box-shadow 0.3s ease; /* 平滑过渡颜色和阴影 */
+        }
+
+        /* 链接悬停时的阴影效果 */
+        a:hover {
+            color: #3c4add; /* 悬停时的颜色更深 */
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3); /* 添加阴影 */
+            transition: box-shadow 0.3s ease; /* 平滑过渡阴影 */
+        }
+
+        #music-toggle {
+            position: absolute;
+            top: 72px; /* 距离顶部60px */
+            right: 22px; /* 距离右边20px */
+            padding: 10px 20px; /* 按钮的内边距 */
+            font-size: 10px; /* 按钮的字体大小 */
+            cursor: pointer; /* 鼠标悬停时显示指针 */
+        }
+        /* 为链接添加动态阴影效果 */
+        a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+            height: 1px; /* 阴影的高度 */
+            background: rgba(0, 0, 0, 0.3); /* 阴影的颜色 */
+            opacity: 0; /* 初始透明度为0 */
+            transition: opacity 0.3s ease; /* 平滑过渡透明度 */
+        }
+
+        /* 链接悬停时显示阴影 */
+        a:hover::after {
+            opacity: 1; /* 悬停时透明度为1 */
+        }
+
+    </style>
+</head>
+<body>
+<div class="title">
+    <h1>未来展望</h1>
+</div>
+<div class="content">
+    <div class="text-block">
+        <img src="/image/future/屏幕截图%202024-11-10%20204232.png" alt="图片1">
+        <br>
+        <strong>“只有从今天开始努力的人，明天才会到来”</strong>
+        <br>
+        <p>我认为，与其空想明天会如何，不如把应当完成的事情铺陈开来，自然会从其中找到前进的方向</p>
+        <br>
+        <p>所以，这一页我会陆续放上一些大佬的网页/资源/笔记或是自己的一点自勉，方便自己查找，但如果你能从中得到些许帮助，便是我的荣幸了</p>
+        <br>
+        <strong>编程</strong>
+        <br>
+        <a href="https://studyingfather.com/archives/841">>>> 一个动态更新的洛谷综合题单</a>
+        <br>
+        <a href="https://zhuanlan.zhihu.com/p/324507636">>>> 算法学习笔记-知乎</a>
+        <br>
+        <a href="https://bohrium.dp.tech/courses/2937313581?tab=courses">>>> python网课</a>
+        <br>
+        <a href="https://oi-wiki.org/">>>> OIwiki</a>
+        <br>
+        <strong>读书</strong>
+        <br>
+        <a href="https://www.zhonghuadiancang.com/">>>> 中华典藏</a>
+        <br>
+        <a href="https://read.douban.com/reader/ebook/29260314/?dcs=bookshelf">>>> 简单的逻辑学</a>
+        <br>
+        <a href="https://www.99csw.com/book/7432/255860.htm">>>> 百年孤独</a>
+        <br>
+        <a href="https://www.pingfandeshijie.net/di-yi-bu-01.html">>>> 平凡的世界</a>
+        <br>
+
+
+
+
+    </div>
+
+</div>
+<div id="clock" class="clock"></div>
+<div class="content2">
+    <a href="yidianjiushi.html">>>> 过去？</a>
+    <br>
+    <a href="dangxiaqingkuang.html">>>> 现在？</a>
+    <br>
+    <a href="chongdianzhan.html">>>> 累了？</a>
+    <br>
+</div>
+<button id="music-toggle">播放/暂停音乐</button>
+<audio autoplay loop>
+    <source src="music/1.mp3" type="audio/mpeg">
+</audio>
+<script>
+    var audio = document.querySelector('audio');
+    var toggle = document.getElementById('music-toggle');
+    toggle.addEventListener('click', function() {
+        if (audio.paused) {
+            audio.play();
+            toggle.textContent = '暂停音乐';
+        } else {
+            audio.pause();
+            toggle.textContent = '播放音乐';
+        }
+    });
+</script>
+<script>
+    const letters = document.querySelectorAll('.text-block span');
+    let letterIndex = 0;
+    function typeLetter() {
+        if (letterIndex < letters.length) {
+            letters[letterIndex].style.opacity = 1;
+            letterIndex++;
+            setTimeout(typeLetter, 60); // 200毫秒显示一个字符
+        }
+    }
+
+    typeLetter();
+    function updateClock() {
+        var now = new Date(); // 获取当前时间
+        var hours = now.getHours();
+        var minutes = now.getMinutes();
+        var seconds = now.getSeconds();
+
+        // 如果小于10，前面加0
+        minutes = minutes < 10 ? '0' + minutes : minutes;
+        seconds = seconds < 10 ? '0' + seconds : seconds;
+
+        var timeString = hours + ':' + minutes + ':' + seconds;
+        document.getElementById('clock').textContent = timeString;
+
+        setTimeout(updateClock, 1000); // 每秒更新一次
+    }
+
+    updateClock(); // 初始化时钟
+</script>
+
+</body>
+</html>

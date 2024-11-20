@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>加油！！^-^</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background-color: navajowhite;
+            background-position: center; /* 将图片置于中心 */
+            background-repeat: no-repeat; /* 不重复图片 */
+            background-size: 100% auto; /* 设置背景图片宽度为100% */
+            position: relative; /* 为 body 设置相对定位 */
+            background-image: url('image/屏幕截图 2024-11-10 205434.png'); /* 设置背景图片 */
+            /*animation: fadeIn 7s ease-in-out; !* 应用背景图片淡入动画 *!*/
+            overflow-y: scroll; /* 添加垂直滚动条 */
+        }
+
+        .content {
+            position: absolute;
+            top: 148px; /* 距离顶部40px */
+            right: 230px; /* 距离右边40px */
+            color: #17171c; /* 文字颜色 */
+            z-index: 100;
+            width: 60%; /* 确保内容宽度为80% */
+            max-height: 66vh; /* 设置最大高度为视口高度 */
+            overflow-y: scroll; /* 如果内容超出最大高度，则显示滚动条 */
+            padding: 20px; /* 添加内边距 */
+            box-sizing: border-box; /* 边框和内边距包含在宽度内 */
+            font-weight: bold; /* 字体加粗 */
+        }
+        .title {
+            position: absolute;
+            top: 17px; /* 距离顶部20px */
+            right: 1180px; /* 距离右边200px */
+            font-size: 23px; /* 设置文字大小 */
+            white-space: nowrap; 用于防止标题文本换行。
+            box-sizing: border-box; /* 边框和内边距包含在宽度内 */
+            color: black; /* 文字颜色 */
+            z-index: 100;
+        }
+        .content2 {
+            position: absolute;
+            bottom: 30px; /* 距离底部30px */
+            right: 30px; /* 距离右边30px */
+            font-size: 18px; /* 设置文字大小 */
+            z-index: 100;
+            text-align: right; /* 右对齐文字 */
+            animation: fadeInText 5s ease-in-out; /* 应用文字淡入动画 */
+        }
+        h1 {
+            color: black; /* 文字颜色设置为黑色 */
+            text-shadow: 2px 2px 4px #aaa; /* 添加文字阴影以提高可读性 */
+        }
+        img {
+            width: 50%; /* 图片宽度为50% */
+            height: auto; /* 图片高度自动调整 */
+            margin-bottom: 20px; /* 图片下方添加间距 */
+        }
+        .text-block {
+            opacity: 0; /* 初始透明度为0 */
+            animation: fadeInText 5s ease-in-out forwards; /* 应用文字淡入动画 */
+        }
+        span {
+            opacity: 0; /* 初始透明度为0 */
+            display: inline-block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes fadeInText {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes fadein-outText {
+            0%, 100% { opacity: 0; } /* 开始和结束时透明度为0 */
+            20%, 80% { opacity: 1; } /* 中间部分透明度为1 */
+        }
+        .clock {
+            position: absolute;
+            top: 20px; /* 距离顶部20px */
+            right: 20px; /* 距离右边20px */
+            font-size: 26px; /* 设置文字大小为24px */
+            color: black; /* 文字颜色 */
+            z-index: 100;
+            text-align: right; /* 右对齐文字 */
+            padding: 10px; /* 添加内边距 */
+            background-color: rgba(255, 255, 255, 0.8); /* 半透明背景 */
+            border-radius: 5px; /* 圆角边框 */
+        }
+        /* 定义灰尘下落的动画 */
+        @keyframes dustFall {
+            0% {
+                transform: translateY(-5px);
+                opacity: 0;
+            }
+            50% {
+                opacity: 0.5;
+            }
+            100% {
+                transform: translateY(105vh);
+                opacity: 0;
+            }
+        }
+
+        /* 添加到body的伪元素::after中 */
+        body::after {
+            content: '';
+            position: fixed;
+            top: -1000px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: transparent;
+            z-index: 10000; /* 确保在内容之下 */
+            pointer-events: none; /* 防止伪元素影响页面交互 */
+            background-image:
+                    radial-gradient(circle, rgba(0, 0, 0, 0.2) 2px, transparent 2px),
+                    radial-gradient(circle, rgba(0, 0, 0, 0.2) 2px, transparent 2px),
+                    radial-gradient(circle, rgba(0, 0, 0, 0.2) 2px, transparent 2px),
+                    radial-gradient(circle, rgba(0, 0, 0, 0.2) 2px, transparent 2px);
+            background-size: 100px 100px;
+            background-position: 0 0, 50px 50px, 100px 100px, 150px 150px;
+            animation: dustFall 8s linear infinite;
+        }
+        a {
+            color: #17171c; /* 链接颜色 */
+            text-decoration: none; /* 去除下划线 */
+            position: relative; /* 为绝对定位做准备 */
+            transition: color 0.3s ease, box-shadow 0.3s ease; /* 平滑过渡颜色和阴影 */
+        }
+
+        /* 链接悬停时的阴影效果 */
+        a:hover {
+            color: #3c4add; /* 悬停时的颜色更深 */
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3); /* 添加阴影 */
+            transition: box-shadow 0.3s ease; /* 平滑过渡阴影 */
+        }
+
+        #music-toggle {
+            position: absolute;
+            top: 72px; /* 距离顶部60px */
+            right: 22px; /* 距离右边20px */
+            padding: 10px 20px; /* 按钮的内边距 */
+            font-size: 10px; /* 按钮的字体大小 */
+            cursor: pointer; /* 鼠标悬停时显示指针 */
+        }
+        /* 为链接添加动态阴影效果 */
+        a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+            height: 1px; /* 阴影的高度 */
+            background: rgba(0, 0, 0, 0.3); /* 阴影的颜色 */
+            opacity: 0; /* 初始透明度为0 */
+            transition: opacity 0.3s ease; /* 平滑过渡透明度 */
+        }
+
+        /* 链接悬停时显示阴影 */
+        a:hover::after {
+            opacity: 1; /* 悬停时透明度为1 */
+        }
+        .navbar {
+            background-color: rgba(0, 0, 0, 0.8); /* 黑色背景，透明度为0.8 */
+            position: fixed; /* 固定在顶部 */
+            top: 150px;
+            left: 0;
+            width: 200px; /* 设置导航栏宽度 */
+            height: 64%;
+            padding: 10px 0;
+            z-index: 1000;
+            border-right: 1px solid #ccc; /* 右侧边框 */
+        }
+
+        .nav-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column; /* 设置为竖直方向 */
+            justify-content: start; /* 列表项靠上对齐 */
+            align-items: center; /* 列表项居中对齐 */
+            height: 100%;
+        }
+
+        .nav-item {
+            margin: 10px 0; /* 列表项之间的间距 */
+            width: 100%; /* 列表项宽度 */
+        }
+
+        .nav-link {
+            color: #ffffff; /* 文字颜色为白色 */
+            text-decoration: none;
+            padding: 10px 20px; /* 文字周围的内边距 */
+            transition: color 0.3s ease;
+            display: block; /* 使链接填满整个列表项 */
+            text-align: center; /* 文字居中 */
+        }
+
+        .nav-link:hover {
+            color: #007BFF;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<div class="title">
+    <h1>自勉&积累</h1>
+</div>
+<nav class="navbar">
+    <ul class="nav-list">
+        <li class="nav-item"><a href="#home" class="nav-link">导航栏</a></li>
+        <li class="nav-item"><a href="#home" class="nav-link">《平凡的世界》</a></li>
+        <li class="nav-item"><a href="#about" class="nav-link">《简单的逻辑学》</a></li>
+        <li class="nav-item"><a href="#services" class="nav-link">《九三年》</a></li>
+    </ul>
+</nav>
+<div class="content">
+    <div class="text-block">
+
+        <div id="home" class="text-block">
+
+            <p style="font-size: 24px; font-weight: bold;">《平凡的世界》</p>
+        <p>小时候，我们常常把亲戚这两字看得多么美好和重要。<br></p>
+        <p>一旦长大成人，开始独立生活，我们便很快知道，亲戚关系常常是庸俗的；<br></p>
+        <p>互相设法沾光，沾不上光就翻白眼；甚至你生活中最大的困难也常常是亲戚们造成的；<br></p>
+        <p>生活同样会告诉你，亲戚往往不如朋友对你真诚。<br></p>
+        <p>见鬼去吧，亲戚<br></p>
+
+        <p>这样的城市是一个各色人等混杂的天地；而每一个层次的人又有自己的天地。<br></p>
+        <p>最大的好处是，大街上谁也不认识谁，谁也不关心谁。<br></p>
+        <p>他衣衫行装虽然破烂不堪，但只要不露羞丑，照样可以在这个世界里自由行走，别人连笑话你的兴趣都没有<br></p>
+
+        <p>当你一踏进它的大门，便会豁然明白，你已经从孩子变成了大人。<br></p>
+        <p>青春岁月开始了。<br></p>
+        <p>这是你的黄金年华，连空气都象美酒一般醇香醉人。<br></p>
+
+        <p>对田福堂这样的人来说，权力即便是象征性地存在，也是极其重要的。<br></p>
+        <p>活着时，权力是最好的精神食粮；死去时，权力也是最好的“安魂曲”。<br></p>
+
+        <p>当一个人集中地凝视着自己的不幸时，他就很难想象别人的苦难。<br></p>
+
+        <p>我们承认伟人在历史过程中的贡献。<br></p>
+        <p>可人类生活的大厦从本质上说，是由无数普通人的血汗乃至生命所建造的。<br></p>
+        <p>伟人们常常企图用纪念碑或纪念堂来使自己永世流芳。<br></p>
+        <p>真正万古长青的却是普通人的无人纪念碑——生生不息的人类生活自身。<br></p>
+        <p>是的，生活之树常青。<br></p>
+
+        <p>结论依然应该是：幸福，或者说生存的价值，并不在于我们从事什么样的工作。<br></p>
+        <p>在无数艰难困苦之中，又何尝不包含人生的幸福？<br></p>
+        <p>他为妹妹们的生活高兴，也为他自己的生活而感到骄傲。<br></p>
+
+        <p>细细想起来，我们之间本来就存在着差异。<br></p>
+        <p>这不是说谁比谁强，而是性格、爱好和对生活的看法不尽相同。<br></p>
+        <p>正因为如此，才终于导致了这场悲剧……<br></p>
+
+        <p>人往往到此时才心平气静地回顾自己已经走过的生命历程，洞若观火地审视自己半个世纪生活中的那些失误和不当；<br></p>
+        <p>同时更广阔和透彻地认识了人生的意义——即所谓“知天命”。<br></p>
+        <p>因此，这样的人就能在这样的时期极好地调整自己，用更宽容、善良、豁达和优雅的态度对待生活。<br></p>
+
+        <p>他还应该象往常一样，精神抖擞地跳上新生活的马车，坐在驾辕的位置上，绷紧全身的肌肉和神经，吆喝着，呐喊着，继续走向前去！<br></p>
+
+        <p>这种认识当然出自这些人非同一般的生活经历，而不在于读了多少伟人们的“生活指南”书。<br></p>
+        <p>当然，这不是说，一定要在某些不协调甚至对立的认识中分出是非来。<br></p>
+        <p>比如，孙少平自己不愿来大城市生活，并不意味着他对大城市和生活在其间的人们有丝毫鄙视的情绪。<br></p>
+        <p>不，恰恰相反！这个人常常用羡慕和祝福的眼光看待大街上红光满面的男女老少。<br></p>
+        <p>每个人都有权利选择自己的生活。<br></p>
+
+        <p>我应该把一切进行得比现在更好。<br></p>
+        <p>历史，社会环境，尤其是个人的素养，都在局限人——不仅局限艺术作品中的人，首先局限它的创造者。<br></p>
+        <p>所有人的生命历程在人类历史的长河中都是一个小小的段落，因此，每一代人都有自己的命中注定的遗撼。<br></p>
+        <p>遗撼，深深的遗撼。<br></p>
+
+        <p>唯一能自慰的是，我们曾真诚而充满激情地在这个世界上生活过，竭尽全力地劳动过，并不计代价地将自己的血汗献给了不死的人类之树。<br></p>
+
+        <p>那么，要旨仍然应该是首先战胜自己，并将精神提升到不断发展着的生活所要求的那种高度，才有可能使自己重新走出洼地，亦步亦趋跟着生活进入新的境界。<br></p>
+        <p>不管实际结果如何，这个起码的觉悟应当具备。<br></p>
+
+        <p>结论一目了然：只能永远把艰辛的劳动看作是生命的必要；<br></p>
+        <p>即使没有收获的指望，也心平气静地继续耕种<br></p>
+        </div>
+
+        <div id="about" class="text-block">
+            <p style="font-size: 24px; font-weight: bold;">《简单的逻辑学》</p>
+        <p>是民主的内涵有其丰富的来源：人物、事件、宪法、立法行动、旧制度以及新制度等。<br></p>
+        <p>如果我要和其他人讨论民主问题，为了避免因走入主观主义的歧路而无法与别人沟通，我讨论的必然是现实中大家都明白的事物；<br></p>
+        <p>我必须不断地涉及现实中的种种事件，而这些事件即是民主内涵的现实土壤。<br></p>
+        <p>错误观念即对客观事物作出偏离其本源的错误反映。<br></p>
+        <p>没有任何观念可以完全脱离客观世界，即便是最荒谬的想法。<br></p>
+        <p>但是观念与客观世界的联系可以变得遥远而难以捉摸。<br></p>
+        <p>错误观念已经偏离了事物的本源，它或许不能提供客观事物的真实情况，但却可以反映出产生错误观念的人的精神状态。<br></p>
+        <p>错误观念是我们在应该全神贯注时却麻痹大意的产物，是我们对客观世界作出一相情愿的假设的结果，它只能由我们自己负责<br></p>
+        <p>语言要忠实表达出客观事物的本来面貌，从而使我们的沟通有坚实的事实基础<br></p>
+        <p>语言和观念的匹配度越高，沟通就越清晰、有效<br></p>
+        <p>在逻辑学中，陈述有其特定的含义，它是语言上的特定表达方式，只针对可以作出真假判断的命题<br></p>
+        <p>不要想当然地认为你的听众会领悟你没有直接表达的意思<br></p>
+        <p>说完整的句子<br></p>
+        <p>不要将主观看法当做客观事实<br></p>
+        <p>避免使用双重否定<br></p>
+        <p>最忌讳两件事：一是对人讲话态度傲慢；二是故作高深，让人云里雾里。<br></p>
+        <p>避免产生歧义的方法是，让你所运用的词语尽可能有针对性地反映出你的本意，以便读者或者听众不用费心去猜测你所说的到底是什么<br></p>
+        <p>命题的定义：一个可以作出真假判断的语言表述。<br></p>
+        <p>决定命题真假的依据是现实情况，而逻辑真相是建立在本体真相的基础之上的<br></p>
+        <p>不要将你主观上的某个灰色观念无限放大到包括整个世界，并且认为这就是世界的本来面貌<br></p>
+        <p>这里所体现的原理是：负面只有在正面已知的情况下才可以被确认为负面<br></p>
+        <p>真实性针对命题的内容，而有效性则针对命题的结构，我们称之为论证<br></p>
+        <p>每一个M都是P。<br></p>
+        <p>每一个S都是M。<br></p>
+        <p>所以，每一个S都是P。<br></p>
+        <p>第一个命题是大前提，第二个是小前提，不用说，第三个是结论。<br></p>
+        <p>三个大写字母，M、S、P，分别代表着三个命题中包含的事物——要表达的观点。<br></p>
+        <p>M代表“中项”，P代表“大项”，S代表“小项”。<br></p>
+        <p>中项尤其重要，因为它的任务是搭建起联结其他两项的桥梁，论证的成功与否有赖于中项。<br></p>
+        <p>我们来看一个例子：<br></p>
+        <p>以价值命题为前提的论断，永远不能像以事实为前提的论断那样，有确定的评判标准，因为价值的评估永远会受到挑战<br></p>
+        <p>命题的量指的是它是全称的还是特称的<br></p>
+        <p>一个命题，是某种可真可假的论断的语言表达。<br></p>
+        <p>从语法上看，每个命题都包括一个主项和一个谓项。<br></p>
+        <p>主项，是我们所要言说的对象，而谓项，则是我们对此对象所说的一切。<br></p>
+        <p>断言是将谓项附着于主项的观念联结过程。<br></p>
+        <p>真相如果只存在于理论上，不能通过实践去检验，那它还是不存在的。<br></p>
+        <p>推卸应该承担的责任是道德沦丧，而忍受一切则会使一切都变得没有意义。<br></p>
+        <p>永远不要直接调动人们的情感，要努力使人们自己发现真相。<br></p>
+        <p>只有真相，才值得人们为之欢呼雀跃。<br></p>
+        <p>论证的目的是发现真相，争吵的目的是击败你的对手<br></p>
+        <p>很多重要的事物都不能定量衡量，或许我们可以说最重要的事物都不能。<br></p>
+        <p>例如爱、美丽、善良、公正、自由、和平，等等。<br></p>
+        <p>我们如何衡量它们？它们有多重？速度是多少？成本几角几分？<br></p>
+        <p>试图将不需要量化的事物进行量化是对它们的亵渎。<br></p>
+        <p>没有强有力的证据进行反对论证，并不能因此证明其为真。<br></p>
+        <p>不能仅仅因为你不能证明我是错的，就说我的观点是对的。<br></p>
+
+        </div>
+        <div id="services" class="text-block">
+            <p style="font-size: 24px; font-weight: bold;">《九三年》</p>
+        <p>在我们身上造成黑夜的东西，也能给我们留下点点星光。<br>西穆尔丹为人真诚可靠，身上充满美德。<br>可是这些品质只在黑暗当中闪烁<br></p>
+
+        <p>普遍的道德是社会的基础，普遍的良心是法律的基础。<br></p>
+
+        <p>在这些摧残文明又使文明复兴的关键性的灾变前面，很难对某一细节的是非作出评判。<br>根据结果去责备或称赞某些人，那简直无异于根据总数去责备或称赞一个个数字。<br>该发生的事总得发生，要刮的风也不会不刮。<br>永远晴朗的天空不会受到这些寒风的影响。革命之上存在着真理和正义，正如暴风雨之上仍有繁星密布的天空。<br></p>
+        <p>我们不禁暗自寻思，这样一个盲人忍受得了如此强烈的光线吗？<br></p>
+        <p>布列塔尼觉得不堪忍受这种暴力的解放，于是奋起反抗。这是奴隶们习惯性的错误。<br></p>
+        <p>谁救了狼就害了羊。谁治好了秃鹫的翅膀，就得为它的利爪负责。<br></p>
+        <p>革命有一个敌人，就是旧世界，革命对旧世界就要冷酷无情；<br>正如外科医生也有一个敌人，就是坏疽，外科医生对坏疽也得冷酷无情。<br>革命就是</p>
+        <p>消灭国王来铲除君主制度，<br>消灭贵族来铲除贵族阶级，<br>消灭军人来铲除专制政府，<br>消灭僧侣来铲除迷信，<br>消灭法官来铲除野蛮，<br>总之，就是要消灭暴君来铲除暴政。<br>这个手术是可怕的，革命很有把握地在做这个手术。至于得牺牲多少健康的肌肉，请去问问博埃哈夫是怎么想的吧。<br>哪有切除肿瘤而不流一滴血的？哪有扑灭火灾而不拆除一点房屋的？<br>这些可怕的非做不可的事就是成功的本身条件。<br>一个外科医生好似一个屠夫；一个为人治病的人看上去会像一个刽子手。<br>革命就献身于这种不可避免的工作。革命切割毁伤，但是挽救了生命<br></p>
+        <p>怎么！你要为病毒向革命求情吗？你希望革命对有害的东西表示宽大吗？革命不会听你的。<br>革命抓住过去，要把过去消灭。革命在文明身上切开一道很深的口子，人类的健康就要从这道口子里产生。<br>你痛苦吗？当然痛苦。这要持续多长时间呢？持续手术所需要的时间。<br>而后你就能活下去了。革命在为世界开刀。所以才有这流血的九三年<br></p>
+        <p>外科医生是心平气和的，”郭万说，“而我看到的人态度都很激烈。”<br></p>
+        <p>“革命就需要一些凶狠强悍的人来推动，”<br>西穆尔丹反驳道，<br>“革命不要一切发抖的手，而只信赖铁石心肠的人。<br>丹东是不好惹的，罗伯斯比尔是坚定不移的，圣茹斯特是不屈不挠的，马拉是铁面无情的。<br>小心，郭万。这几个人名是不可缺少的。<br>对于我们，它们和军队一样重要。它们会使欧洲发抖。”<br></p>
+        <p>“可能也会使未来发抖吧，”郭万说。<br></p>
+        <p>这个反问使西穆尔丹沉思起来。接着他抬起头来说道：“那些狮子就是意识，那些狮子就是观念，那些狮子就是原则。”<br></p>
+        <p>“它们造成恐怖。”<br></p>
+        <p>“总有一天，革命会证明恐怖是正确的。”<br></p>
+        <p>“只怕恐怖会引起对革命的中伤。”<br></p>
+        <p>郭万接着说道：></p>
+        <p>“自由、平等、博爱，都是和平与和谐的信条。<br>为什么要给这些信条一个吓人的外表呢？我们的目的是什么呢？<br>就是要争取各个民族形成世界性的共和国。<br>那么，我们就不应当使他们感到害怕。<br>恐吓有什么用呢？恐吓不能吸引各个民族，正如稻草人不能引诱鸟雀一样。<br>为了行善就不应该去作恶。推翻王位并不是为了竖起断头台。<br>杀死国王，让民族生存下去。打掉王冠，放过脑袋。<br>革命是和谐，不是恐怖。温和的思想并没有被严酷无情的人好好贯彻。<br>我认为‘赦免’是人类语言中最美好的字眼。我只在自己有流血的危险的时候才愿意流血。<br>不过，我只会打仗，只是一个军人。<br>可是，如果人们不能宽恕，那么就根本不值得去争取胜利。<br>让我们在战斗中是敌人的敌人，胜利后就成为他们的兄弟。”<br></p>
+        <p>他是一个二流人物，既老实，又勇敢，又平凡，当兵比当官更为合适，在完成无需理解的职责时十分聪明<br></p>
+        <p>他从不心软，不会受到任何形式的腐蚀，既不会贪图钱财而出卖良心，也不会出于怜悯而不顾正义。<br>他的灵魂和他的心上有纪律和命令这两个遮光的罩子，就像马的两只眼睛上戴的眼罩一样，他在可以看得见的范围内向前走去。<br>他的步子是笔直的，但是他的道路是狭窄的。<br></p>
+        </div>
+    </div>
+
+</div>
+<div id="clock" class="clock"></div>
+<div class="content2">
+    <a href="yidianjiushi.html">>>> 过去？</a>
+    <br>
+    <a href="dangxiaqingkuang.html">>>> 现在？</a>
+    <br>
+    <a href="weilanzhanwang.html">>>> 未来？</a>
+    <br>
+</div>
+<button id="music-toggle">播放/暂停音乐</button>
+<audio autoplay loop>
+    <source src="music/1.mp3" type="audio/mpeg">
+</audio>
+<script>
+    var audio = document.querySelector('audio');
+    var toggle = document.getElementById('music-toggle');
+    toggle.addEventListener('click', function() {
+        if (audio.paused) {
+            audio.play();
+            toggle.textContent = '暂停音乐';
+        } else {
+            audio.pause();
+            toggle.textContent = '播放音乐';
+        }
+    });
+</script>
+<script>
+    const letters = document.querySelectorAll('.text-block span');
+    let letterIndex = 0;
+    function typeLetter() {
+        if (letterIndex < letters.length) {
+            letters[letterIndex].style.opacity = 1;
+            letterIndex++;
+            setTimeout(typeLetter, 60); // 200毫秒显示一个字符
+        }
+    }
+
+    typeLetter();
+    function updateClock() {
+        var now = new Date(); // 获取当前时间
+        var hours = now.getHours();
+        var minutes = now.getMinutes();
+        var seconds = now.getSeconds();
+
+        // 如果小于10，前面加0
+        minutes = minutes < 10 ? '0' + minutes : minutes;
+        seconds = seconds < 10 ? '0' + seconds : seconds;
+
+        var timeString = hours + ':' + minutes + ':' + seconds;
+        document.getElementById('clock').textContent = timeString;
+
+        setTimeout(updateClock, 1000); // 每秒更新一次
+    }
+
+    updateClock(); // 初始化时钟
+</script>
+
+</body>
+</html>
